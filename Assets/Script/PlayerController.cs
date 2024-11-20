@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private float jumpBufferTimeLeft;
     private float koyoteTimeTimeLeft;
 
+    private Vector2 lastGroundLocation;
 
 
     // Use this for initialization
@@ -29,7 +30,6 @@ public class PlayerController : MonoBehaviour
     {
         r2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        koyoteTimeTimeLeft = KoyoteTime;
     }
 
     void Update()
@@ -44,27 +44,30 @@ public class PlayerController : MonoBehaviour
         if (CanJump() && jumpBufferTimeLeft > 0)
         {
             r2d.velocity = Vector2.zero;
-            grounded = false;
-            anim.SetBool("Ground", false);
             r2d.AddForce(new Vector2(0, jumpForce));
 
             jumpBufferTimeLeft = 0;
-            koyoteTimeTimeLeft = -0.25f;
+            koyoteTimeTimeLeft = 0;
         }
 
         if (jumpBufferTimeLeft > 0) jumpBufferTimeLeft -= Time.deltaTime;
-        if (koyoteTimeTimeLeft > 0.5) koyoteTimeTimeLeft -= Time.deltaTime;
-        if (koyoteTimeTimeLeft < 0.5) koyoteTimeTimeLeft += Time.deltaTime;
+        if (koyoteTimeTimeLeft > 0) koyoteTimeTimeLeft -= Time.deltaTime;
+
+        if (transform.position.y < -20)
+        {
+            transform.position = lastGroundLocation;
+            r2d.velocity = Vector2.zero;
+        }
 
     }
 
     void FixedUpdate()
     {
         grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
-        if (grounded && koyoteTimeTimeLeft > 0.5)
+        if (grounded)
         {
-            Debug.Log("refresh");
             koyoteTimeTimeLeft = KoyoteTime;
+            lastGroundLocation = transform.position;
         }
 
         anim.SetBool("Ground", grounded);
@@ -93,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
     bool CanJump()
     {
-        return grounded || koyoteTimeTimeLeft > 0.5;
+        return grounded || koyoteTimeTimeLeft > 0;
     }
 
 }

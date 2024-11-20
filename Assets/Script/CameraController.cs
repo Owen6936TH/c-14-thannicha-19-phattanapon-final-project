@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Vector3 offset;
-    [SerializeField] private float damping;
+    [SerializeField] private Vector3 offset = new Vector3(0,0,-1);
+    [SerializeField] private float damping = 0.25f;
 
     public Transform target;
 
