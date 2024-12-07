@@ -1,20 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+namespace Assets.Script
 {
-    [SerializeField] private Vector3 offset = new Vector3(0,0,-1);
-    [SerializeField] private float damping = 0.25f;
-
-    public Transform target;
-
-    private Vector3 vel = Vector3.zero;
-
-    private void FixedUpdate()
+    public class CameraController : MonoBehaviour
     {
-        Vector3 targetPosition = target.position + offset;
+        [SerializeField] private Vector3 offset = new Vector3(0,0,-1);
+        [SerializeField] private float damping = 0.25f;
 
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref vel, damping);
+        public Transform target;
+
+        private Vector3 vel = Vector3.zero;
+
+        private void FixedUpdate()
+        {
+            Vector3 targetPosition = target.position + offset;
+
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref vel, damping);
+        }
     }
 }

@@ -247,3 +247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1b12d2baefa834c9be5fffa0c19a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinText: {fileID: 0}
+  gameOverScreen: {fileID: 0}
+  silverCoin: {fileID: 4614219211145486624, guid: e0e3e648925a44f4f808509d03d0381c, type: 3}
