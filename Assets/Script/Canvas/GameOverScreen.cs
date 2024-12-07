@@ -11,6 +11,7 @@ namespace Assets.Script
         //Method
         public void StartGameOver()
         {
+            Time.timeScale = 0;
             gameObject.SetActive(true);
         }
 

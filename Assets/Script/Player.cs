@@ -52,7 +52,6 @@ namespace Assets.Script
             }
             else
             {
-                Time.timeScale = 0;
                 gameOverScreen.StartGameOver();
             }
         }
