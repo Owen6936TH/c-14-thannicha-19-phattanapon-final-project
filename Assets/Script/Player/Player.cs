@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     }
 
     [SerializeField] private TextMeshProUGUI coinText;
+    [SerializeField] private GameOverScreen gameOverScreen;
 
 
     //Method
@@ -31,5 +32,15 @@ public class Player : MonoBehaviour
     public void CollectingCoin(int coinCollected)
     {
         Coin += coinCollected;
+    }
+
+    public bool HaveAnyCoin()
+    {
+        return Coin > 0;
+    }
+
+    public void GameOver()
+    {
+        gameOverScreen.StartGameOver();
     }
 }

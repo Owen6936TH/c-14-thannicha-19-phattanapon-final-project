@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    //Attributes
     [SerializeField] private bool isGold;
+    
     //Method
     private void OnTriggerEnter2D(Collider2D other)
     {
